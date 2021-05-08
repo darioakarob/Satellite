@@ -1,0 +1,40 @@
+; PlatformIO Project Configuration File
+;
+;   Build options: build flags, source filter
+;   Upload options: custom upload port, speed and extra flags
+;   Library options: dependencies, extra library storages
+;   Advanced options: extra scripting
+;
+; Please visit documentation for the other options and examples
+; https://docs.platformio.org/page/projectconf.html
+
+[platformio]
+default_envs = esp32devnull
+;default_envs = esp32devnull, esp32dht, esp32ds18b20, esp32bmp280
+
+[env]
+platform = espressif32
+board = esp32dev
+framework = espidf
+lib_ldf_mode = chain+
+monitor_speed = 115200
+monitor_filters = 
+	direct
+	esp32_exception_decoder
+monitor_flags = --raw
+
+[env:esp32devnull]
+upload_port = COM19
+build_flags = -D DEVNULL
+
+[env:esp32dht]
+upload_port = COM23
+build_flags = -D DHTXX
+
+[env:esp32ds18b20]
+upload_port = COM17
+build_flags = -D DALLASTEMP
+
+[env:esp32bmp280]
+upload_port = COM27
+build_flags = -D BMP280
